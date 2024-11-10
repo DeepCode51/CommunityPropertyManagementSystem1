@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>收据模板</title>
+    <style type="text/css">
+        .main{width: 690px; height: 480px; margin: 0px auto; margin-top: 20px; padding: 10px; display: flex;}
+        .body{width: 95%; height: 480px;}
+        .title{width: 100%; height: 40px; display: flex;}
+        .title .div1{width: 60%; text-align: right;}
+        .title .div1 .divCtn{width: 230px; height: 40px; float: right;}
+        .title .div1 .divCtn .titleCtn{width: 230px; height: 30px; line-height: 30px;text-align: center; font-size: 25px; font-weight: bold;}
+        .title .div1 .divCtn .titleUdeLine{width: 240px; height: 6px; border-bottom: solid 2px #9C5223; border-top: solid 2px #9C5223;}
+        .title .div2{width: 40%; text-align: right; height: 40px; line-height: 30px; font-size: 20px; font-weight: bold;}
+        .date{width: 100%; height: 40px; display: flex;}
+        .date .deDiv1{width: 60%; height: 40px; line-height: 40px; text-align: right; font-size: 18px;}
+        .date .deDiv2{width: 40%; height: 40px;line-height: 40px;  text-align: right;font-size: 18px;}
+        .tempTr1 td{text-align: center;}
+        table tr td{padding: 5px;}
+        .tempTr2 td{height: 40px; text-align: center;}
+        .end{width: 5%; height: 480px; }
+    </style>
+</head>
+<body>
+
+<!--<div class="main"   id="print_"  style="display: none;">-->
+<div class="main"   id="print_" >
+    <div class="body">
+        <div class="title">
+            <div class="div1">
+                <div class="divCtn">
+                    <div class="titleCtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;据</div>
+                    <div class="titleUdeLine"></div>
+                </div>
+            </div>
+            <div class="div2">NO：<span style="color: #9C5223;">2396827</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+        <div class="date">
+            <div class="deDiv1">
+                <span id="year"></span>年&nbsp;&nbsp;
+                <span id="month"></span>&nbsp;月
+                <span id="day"></span>日</div>
+            <div class="deDiv2">第&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;&nbsp;号</div>
+        </div>
+        <table  id="tab" border="1" style="width: 100%; border-collapse: collapse;">
+            <tr class="tempTr2">
+                <td colspan="6" style="border-right-color: #FFFFFF; width: 50%; text-align: left;">&nbsp;&nbsp;兹&nbsp;&nbsp;收&nbsp;&nbsp;到&nbsp;&nbsp; <span id="username"></span></td>
+                <td colspan="6" style="width: 50%;">交&nbsp;&nbsp;来&nbsp;&nbsp;下&nbsp;&nbsp;列&nbsp;&nbsp;款&nbsp;&nbsp;项&nbsp;&nbsp;此&nbsp;&nbsp;据</td>
+            </tr>
+            <tr>
+                <td align="center" rowspan="2" style="width: 60%;">摘&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要</td>
+                <td colspan="10" align="center" style="width: 10%;">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</td>
+                <td rowspan="2" align="center" style="width: 30%;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</td>
+            </tr>
+            <tr class="tempTr1">
+                <td>￥</td>
+                <td>百</td>
+                <td>十</td>
+                <td>万</td>
+                <td>千</td>
+                <td>百</td>
+                <td>十</td>
+                <td>元</td>
+                <td>角</td>
+                <td>分</td>
+            </tr>
+
+                <tr class="tempTr2">
+                    <td><span id="content"></span></td>
+                    <td>￥</td>
+                    <td colspan="9">                25432.23</td>
+                    <td>支付方式：现金</td>
+
+                </tr>
+
+            <tr class="tempTr2">
+                <td></td>
+                <td>￥</td>
+                <td colspan="9"></td>
+                <td></td>
+            </tr>
+
+            <tr class="tempTr2">
+                <td></td>
+                <td></td>
+                <td colspan="9"></td>
+                <td></td>
+            </tr>
+
+            <tr class="tempTr2">
+                <td colspan="12" style=" text-align: left;">
+                    合计人民币（大写）：<span id="bigMoney"></span>
+                    <div style="float: right; display: flex;"><div style="font-size: 20px;">￥：</div><div  id="money" style="width: 180px; height: 30px; border-bottom: solid #000000 1px; text-align: center;"></div></div>
+                </td>
+            </tr>
+        </table>
+
+
+        <div style="width: 100%; display: flex; height: 40px;">
+            <div style="width: 50%; height: 40px; line-height: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div style="width: 50%; height: 40px; line-height: 40px;">经手人(盖章)：</div>
+        </div>
+    </div>
+    <!--    <div class="end"><div style="margin-top: 160px; text-align: center; height: 230px;width: 100%;">第<br/>二<br/>联<br/>：<br/>存<br/>根</div></div>-->
+</div>
+
+<div style="text-align:center;">
+    <button type="button" class="layui-btn layui-btn-normal" onclick="print_()">打印合同</button>
+</div>
+
+<script>
+    function print_(){
+
+
+        // window.close();
+        // alert(111)
+
+        document.body.innerHTML=document.getElementById("print_").innerHTML;
+
+        window.print()
+
+
+    }
+</script>
+</body>
+</html>

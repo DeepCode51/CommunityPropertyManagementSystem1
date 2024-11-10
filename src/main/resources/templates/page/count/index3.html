@@ -1,0 +1,76 @@
+<style>
+    .top-panel {border:1px solid #eceff9;border-radius:5px;text-align:center;}
+    .top-panel > .layui-card-body {height:60px;}
+    .top-panel-number {line-height:60px;font-size:30px;border-right:1px solid #eceff9;}
+    .top-panel-tips {line-height:30px;font-size:12px}
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md12">
+            <div id="echarts-dataset" style="background-color:#ffffff;min-height:450px;padding: 10px"></div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    layui.use(['layer','echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+        /**
+         * 报表功能
+         */
+
+        //[{"name":"物业费","counts":1},
+        // {"name":"水费","counts":2},{"name":"电费","counts":1}]
+        $.ajax({
+            url:"repair/queryTongJi",
+            type:"POST",
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                var str="";
+                for(var p in data){
+                    str=str+data[p].name+",";
+                }
+
+                var str2="";
+                for(var p in data){
+                    str2=str2+data[p].counts+",";
+                }
+                str=str.substring(0,str.length-1);
+                var strResult=str.split(",");
+                str2=str2.substring(0,str2.length-1);
+                var strResult2=str2.split(",");
+                debugger
+
+                var myChart = echarts.init(document.getElementById('echarts-dataset'), 'walden');
+
+                // var dom = document.getElementById("container");
+                // var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    xAxis: {
+                        type: 'category',
+                        data: strResult
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: strResult2,
+                        type: 'bar'
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            }
+
+
+        });
+
+    });
+</script>

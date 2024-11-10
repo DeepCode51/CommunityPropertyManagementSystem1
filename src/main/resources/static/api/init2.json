@@ -1,0 +1,40 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/other/CarParkIndex2.html"
+  },
+  "logoInfo": {
+    "title": "逸家物业管理中心",
+    "image": "images/favicon.ico",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "逸家小区物业管理系统",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "车位费查询",
+          "href": "page/other/CarParkIndex2.html",
+          "target": "_self"
+        },
+        {
+          "title": "物业费查询",
+          "href": "page/other/PropertyIndex2.html",
+          "target": "_self"
+        },
+        {
+          "title": "我的投诉列表",
+          "href": "page/other/ComplaintIndex2.html",
+          "target": "_self"
+        },
+        {
+          "title": "我的报修列表",
+          "href": "page/other/RepairIndex2.html",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}

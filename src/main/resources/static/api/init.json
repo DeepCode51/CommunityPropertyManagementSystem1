@@ -1,0 +1,100 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/business/park/CarParkIndex.html"
+  },
+  "logoInfo": {
+    "title": "逸家物业管理中心",
+    "images":"favicon.ico",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "逸家小区物业管理系统",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self",
+      "child": [
+
+        {
+          "title": "业务处理",
+        
+          "href": "",
+          "target": "_self",
+          "child": [
+            {
+              "title": "停车费收费管理",
+              "href": "page/business/park/CarParkIndex.html",
+            
+              "target": "_self"
+            },
+            {
+              "title": "物业费收费管理",
+              "href": "page/business/property/PropertyIndex.html",
+           
+              "target": "_self"
+            },
+            {
+              "title": "投诉信息管理",
+              "href": "page/business/complaint/ComplaintIndex.html",
+           
+              "target": "_self"
+            },
+            {
+              "title": "报修信息管理",
+              "href": "page/business/repair/RepairIndex.html",
+              
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "小区信息管理",
+          
+          "href": "",
+          "target": "_self",
+          "child": [
+            {
+              "title": "住宅楼管理",
+              "href": "page/base/build/BuildIndex.html",
+          
+              "target": "_self"
+            },
+            {
+              "title": "房屋管理",
+              "href": "page/base/house/HouseIndex.html",
+            
+              "target": "_self"
+            },
+            {
+              "title": "业主信息管理",
+              "href": "page/base/owner/OwnerIndex.html",
+            
+              "target": "_self"
+            },
+            {
+              "title": "车位信息管理",
+              "href": "page/base/park/ParkIndex.html",
+          
+              "target": "_self"
+            },
+
+            {
+              "title": "水电数据管理",
+              "href": "page/base/record/RecordIndex.html",
+            
+              "target": "_self"
+            },
+            {
+              "title": "用户登录信息管理",
+              "href": "page/base/admin/index.html",
+            
+              "target": "_self"
+            }
+          ]
+        }
+    
+      ]
+    }
+  ]
+}

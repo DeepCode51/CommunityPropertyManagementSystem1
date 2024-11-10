@@ -1,0 +1,100 @@
+<style>
+    .top-panel {border:1px solid #eceff9;border-radius:5px;text-align:center;}
+    .top-panel > .layui-card-body {height:60px;}
+    .top-panel-number {line-height:60px;font-size:30px;border-right:1px solid #eceff9;}
+    .top-panel-tips {line-height:30px;font-size:12px}
+</style>
+<div class="layuimini-container layuimini-page-anim">
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+    layui.use(['layer','echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+
+        /**
+         * 报表功能
+         */
+
+        $.ajax({
+            url:"repair/queryTongJi",
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                //遍历数据对象 把 counts遍历改成了value
+                for (var p in data){
+                    for(var j in data[p]){
+                        if(j=='counts'){
+                            data[p]['value']=data[p][j];
+                            delete data[p]['counts'];
+                        }
+                    }
+                }
+
+              //转成json对象对应的字符串
+                var data2=JSON.stringify(data);
+                // typeof (data2);
+
+                /**
+                 * 玫瑰图表
+                 */
+                var echartsPies = echarts.init(document.getElementById('echarts-pies'), 'walden');
+                var optionPies = {
+                    title: {
+                        text: '指标名称-玫瑰图',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+
+                    series: [
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            roseType: 'radius',
+                            data:JSON.parse(data2),
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                echartsPies.setOption(optionPies);
+
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+        // // echarts 窗口缩放自适应
+        // window.onresize = function () {
+        //     echartsRecords.resize();
+        // }
+
+    });
+</script>

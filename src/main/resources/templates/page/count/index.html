@@ -1,0 +1,121 @@
+<style>
+    .top-panel {border:1px solid #eceff9;border-radius:5px;text-align:center;}
+    .top-panel > .layui-card-body {height:60px;}
+    .top-panel-number {line-height:60px;font-size:30px;border-right:1px solid #eceff9;}
+    .top-panel-tips {line-height:30px;font-size:12px}
+</style>
+<div class="layuimini-container layuimini-page-anim">
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+    layui.use(['layer','echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+
+        /**
+         * 报表功能
+         */
+
+        $.ajax({
+            url:"repair/queryTongJi",
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+
+                console.log(data);
+                // debugger
+                var str="";
+                for (var p in  data){
+                    str=str+data[p].name+",";
+                }
+                str=str.substring(0,str.length-1);
+                var strResult=str.split(",");
+
+                var str2="";
+                for (var p in  data){
+                    str2=str2+data[p].counts+",";
+                }
+                str2=str2.substring(0,str2.length-1);
+                var strResult2=str2.split(",");
+
+
+                var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+                var optionRecords = {
+                    title: {
+                        text: '保修维护-报表图'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        }
+                    },
+
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: strResult
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '直接访问',
+                            type: 'line',
+                            stack: '总量',
+                            areaStyle: {},
+                            data: strResult2
+                        }
+                    ]
+                };
+                echartsRecords.setOption(optionRecords);
+
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+        // // echarts 窗口缩放自适应
+        // window.onresize = function () {
+        //     echartsRecords.resize();
+        // }
+
+    });
+</script>

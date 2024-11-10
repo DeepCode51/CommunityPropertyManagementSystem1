@@ -1,0 +1,81 @@
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form">
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label required" >费用起始日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="payDate" id="date"
+                       lay-verify="date" placeholder="yyyy-MM-dd" lay-verify="required" autocomplete="off" class="layui-input date">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label required">费用截至日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="endDate" id="date2"
+                       lay-verify="date" placeholder="yyyy-MM-dd" lay-verify="required" autocomplete="off" class="layui-input date">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">金额</label>
+            <div class="layui-input-block">
+                <input type="number" name="money" lay-verify="required" lay-reqtext="金额不能为空" placeholder="请输入金额" value="" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remarks" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'table', 'upload','laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            laydate=layui.laydate,
+            $ = layui.$,
+            upload = layui.upload;
+
+        /**
+         * 初始化表单，要加上，不然刷新部分组件可能会不加载
+         */
+        form.render();
+        // 当前弹出层，防止ID被覆盖
+        var parentIndex = layer.index;
+
+        //多个事件格式的渲染
+        lay('.date').each(function() {
+            laydate.render({
+                elem : this,//元素
+                trigger : 'click'//,//怎么触发
+                // type : 'datetime',//格式
+                // format : 'yyyy-MM-dd'
+            });
+        });
+
+
+        function getIntervalMonth(date1,date2){
+            var date3=date2.getTime()-date1.getTime()  //时间差的毫秒数
+            //计算出相差天数
+            var days=Math.floor(date3/(24*3600*1000))
+        }
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var datas=data.field;//form单中的数据信息
+            addOrUpdateSubmit($,'carcharge/initData',datas);
+            return false;
+        });
+
+    });
+</script>
